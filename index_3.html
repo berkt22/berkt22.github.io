@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>El-Mer Yün | Selvi Daşkın</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f5ede0;
+      --warm-white: #faf6f0;
+      --terracotta: #c4693b;
+      --terracotta-light: #d9845c;
+      --terracotta-dark: #a0502a;
+      --wool: #e8d4bc;
+      --deep-brown: #3d2314;
+      --mid-brown: #7a4f35;
+      --sage: #8a9e7e;
+      --text-body: #4a3020;
+      --text-light: #8a7060;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--text-body);
+      overflow-x: hidden;
+    }
+
+    /* ── TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(250, 246, 240, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196, 105, 59, 0.15);
+      transition: all 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--terracotta-dark);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-logo span {
+      color: var(--mid-brown);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-body);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      text-decoration: none;
+      border-bottom: 1px solid var(--terracotta);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.7; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 4rem 6rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 2.5rem;
+      height: 1px;
+      background: var(--terracotta);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--deep-brown);
+      margin-bottom: 0.4rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 300;
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      margin-left: 0.1rem;
+    }
+
+    .hero-description {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--text-body);
+      max-width: 34ch;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: #fff;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-body);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--terracotta); }
+    .btn-ghost::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+    .btn-ghost:hover::after { transform: translateX(4px); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(196, 105, 59, 0.18) 0%, transparent 60%),
+        linear-gradient(135deg, var(--wool) 0%, var(--cream) 50%, #e8c9a8 100%);
+    }
+
+    /* Decorative yarn/wool circles */
+    .wool-decoration {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+    .wd-1 {
+      width: 280px; height: 280px;
+      top: 15%; left: 20%;
+      border: 2px solid var(--terracotta-light);
+      animation: float 8s ease-in-out infinite;
+    }
+    .wd-2 {
+      width: 180px; height: 180px;
+      top: 50%; left: 55%;
+      border: 1px solid var(--terracotta);
+      animation: float 6s ease-in-out infinite reverse;
+    }
+    .wd-3 {
+      width: 120px; height: 120px;
+      top: 65%; left: 15%;
+      background: radial-gradient(circle, rgba(196,105,59,0.2), transparent);
+      animation: float 10s ease-in-out infinite;
+    }
+
+    .hero-product-card {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 260px;
+      background: rgba(250, 246, 240, 0.92);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(61, 35, 20, 0.15);
+    }
+
+    .product-card-img {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(145deg, #d4a882, #c4693b);
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* SVG wool ball icon */
+    .product-card-img svg {
+      width: 100px;
+      height: 100px;
+      opacity: 0.6;
+    }
+
+    .product-card-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.4rem;
+    }
+    .product-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--deep-brown);
+    }
+    .product-card-price {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-top: 0.3rem;
+    }
+
+    /* floating badge */
+    .hero-badge {
+      position: absolute;
+      bottom: 25%;
+      right: 8%;
+      background: var(--terracotta);
+      color: #fff;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      animation: spin-slow 20s linear infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── STRIP ── */
+    .strip {
+      background: var(--terracotta);
+      color: rgba(255,255,255,0.85);
+      padding: 0.9rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .strip-inner {
+      display: inline-flex;
+      gap: 4rem;
+      animation: marquee 30s linear infinite;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── ABOUT ── */
+    .section {
+      padding: 8rem 6rem;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-main-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, var(--wool), var(--cream), #c4a07a);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-accent-img {
+      position: absolute;
+      width: 55%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--terracotta-light), var(--terracotta-dark));
+      bottom: -3rem;
+      right: -2rem;
+      border: 6px solid var(--warm-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .section-label::before {
+      content: '';
+      width: 2rem;
+      height: 1px;
+      background: var(--terracotta);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--deep-brown);
+      margin-bottom: 1.5rem;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .section-text {
+      font-size: 0.9rem;
+      line-height: 2;
+      color: var(--text-body);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--wool);
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--terracotta);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-top: 0.3rem;
+    }
+
+    /* ── PRODUCTS ── */
+    .products {
+      background: var(--cream);
+    }
+
+    .products-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--warm-white);
+      overflow: hidden;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .product-card:hover { transform: translateY(-6px); }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img-bg {
+      transform: scale(1.05);
+    }
+
+    .p1 { background: linear-gradient(160deg, #e8c9a8, #c49078); }
+    .p2 { background: linear-gradient(160deg, #c8d4c0, #8a9e7e); }
+    .p3 { background: linear-gradient(160deg, #d4b8c0, #a07878); }
+    .p4 { background: linear-gradient(160deg, #c8b870, #a09040); }
+    .p5 { background: linear-gradient(160deg, var(--wool), #b09080); }
+    .p6 { background: linear-gradient(160deg, #c0c8d4, #788090); }
+
+    .product-wool-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.3;
+    }
+
+    .product-info {
+      padding: 1.2rem 1.4rem 1.5rem;
+    }
+    .product-category {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.4rem;
+    }
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--deep-brown);
+      margin-bottom: 0.3rem;
+    }
+    .product-material {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      font-weight: 300;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.4rem 1.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .product-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--terracotta-dark);
+    }
+    .product-price span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-light);
+      font-family: 'Jost', sans-serif;
+      margin-left: 1px;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      color: var(--terracotta-dark);
+      border: 1px solid var(--terracotta);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.55rem 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .btn-whatsapp:hover {
+      background: var(--terracotta);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .btn-whatsapp svg {
+      width: 13px; height: 13px; flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .product-footer { padding: 0 1rem 1rem; }
+      .product-price { font-size: 1.1rem; }
+      .btn-whatsapp { font-size: 0.58rem; padding: 0.45rem 0.7rem; }
+    }
+    @media (max-width: 420px) {
+      .product-footer { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+      .btn-whatsapp { width: 100%; justify-content: center; }
+    }
+
+    /* ── PROCESS ── */
+    .process-section {
+      background: var(--deep-brown);
+      color: var(--cream);
+    }
+
+    .process-section .section-label { color: var(--terracotta-light); }
+    .process-section .section-label::before { background: var(--terracotta-light); }
+    .process-section .section-title { color: var(--cream); }
+    .process-section .section-title em { color: var(--terracotta-light); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      margin-top: 5rem;
+    }
+
+    .process-step {
+      position: relative;
+    }
+    .process-step::after {
+      content: '→';
+      position: absolute;
+      right: -2rem;
+      top: 1rem;
+      color: var(--terracotta);
+      font-size: 1.2rem;
+    }
+    .process-step:last-child::after { display: none; }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(196, 105, 59, 0.3);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+    }
+    .step-text {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: rgba(245, 237, 224, 0.65);
+      font-weight: 300;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.8rem;
+      margin-top: 4rem;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .gallery-bg {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      transition: transform 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-item:hover .gallery-bg {
+      transform: scale(1.06);
+    }
+
+    .g1 { background: linear-gradient(135deg, #d4a882, #a07050); min-height: 460px !important; }
+    .g2 { background: linear-gradient(135deg, #c4b898, #907060); }
+    .g3 { background: linear-gradient(135deg, #c8c4a0, #9a9070); }
+    .g4 { background: linear-gradient(135deg, #b8c4c0, #809090); }
+    .g5 { background: linear-gradient(135deg, #d0a8a0, #a07870); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(61, 35, 20, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay {
+      background: rgba(61, 35, 20, 0.3);
+    }
+    .gallery-overlay-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-style: italic;
+    }
+    .gallery-item:hover .gallery-overlay-text { opacity: 1; }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-section {
+      background: var(--wool);
+      text-align: center;
+      padding: 7rem 6rem;
+    }
+
+    .testimonial-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--deep-brown);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.5;
+    }
+    .testimonial-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      color: var(--terracotta);
+      opacity: 0.3;
+      line-height: 0.5;
+      display: block;
+      margin-bottom: 2rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 60vh;
+    }
+
+    .contact-left {
+      background: var(--terracotta);
+      padding: 7rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-left .section-label { color: rgba(255,255,255,0.7); }
+    .contact-left .section-label::before { background: rgba(255,255,255,0.7); }
+    .contact-left .section-title { color: #fff; }
+    .contact-left .section-title em { color: var(--wool); }
+    .contact-left .section-text { color: rgba(255,255,255,0.8); }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-icon {
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+    }
+    .contact-info-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .contact-info-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-right {
+      background: var(--cream);
+      padding: 7rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.6rem;
+    }
+    .form-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--wool);
+      padding: 0.6rem 0;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-body);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--terracotta); }
+    .form-textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep-brown);
+      color: rgba(245, 237, 224, 0.6);
+      padding: 3rem 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--cream);
+      font-weight: 400;
+    }
+    .footer-logo span {
+      font-style: italic;
+      color: var(--terracotta-light);
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-social a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245, 237, 224, 0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--terracotta-light); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-left > * {
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-eyebrow { animation-delay: 0.1s; }
+    .hero-title { animation-delay: 0.25s; }
+    .hero-subtitle { animation-delay: 0.35s; }
+    .hero-description { animation-delay: 0.45s; }
+    .hero-buttons { animation-delay: 0.55s; }
+
+    /* ── DECORATIVE ELEMENTS ── */
+    .corner-ornament {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      color: rgba(196, 105, 59, 0.06);
+      font-style: italic;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    /* ── WOOL ICON SVG ── */
+    .wool-icon-svg {
+      opacity: 0.25;
+    }
+
+    /* ── RESPONSIVE ── */
+
+    /* Tablet: 768px–1024px */
+    @media (max-width: 1024px) {
+      nav { padding: 1.2rem 2.5rem; }
+      .hero-left { padding: 9rem 3rem 5rem; }
+      .section { padding: 6rem 3rem; }
+      .about { gap: 3rem; }
+      .process-steps { gap: 2rem; }
+      footer { padding: 2.5rem 3rem; }
+    }
+
+    /* Mobile: ≤768px */
+    @media (max-width: 768px) {
+
+      /* NAV */
+      nav { padding: 1rem 1.4rem; }
+      .nav-links { display: none; }
+      .nav-cta { font-size: 0.7rem; padding-bottom: 1px; }
+
+      /* HERO */
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-left {
+        padding: 7rem 1.5rem 3rem;
+        order: 1;
+      }
+      .hero-right {
+        order: 2;
+        height: 75vw;
+        min-height: 280px;
+      }
+      .hero-title { font-size: 3rem; }
+      .hero-subtitle { font-size: 1.1rem; }
+      .hero-description { font-size: 0.85rem; max-width: 100%; }
+      .hero-product-card {
+        width: 180px;
+      }
+      .hero-product-card .product-card-img { height: 130px; }
+      .hero-badge { width: 70px; height: 70px; font-size: 0.52rem; right: 4%; bottom: 20%; }
+      .corner-ornament { display: none; }
+
+      /* STRIP */
+      .strip { padding: 0.7rem 0; }
+
+      /* SECTIONS */
+      .section { padding: 4rem 1.5rem; }
+
+      /* ABOUT */
+      .about {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .about-visual { order: 2; }
+      .about-content { order: 1; }
+      .about-main-img { aspect-ratio: 4/3; }
+      .about-accent-img { width: 45%; bottom: -2rem; right: -1rem; }
+      .stats-row { gap: 1.5rem; flex-wrap: wrap; }
+      .stat-num { font-size: 2rem; }
+
+      /* PRODUCTS */
+      .products-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+      }
+      .products-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .product-info { padding: 0.9rem 1rem 1.1rem; }
+      .product-name { font-size: 1rem; }
+      .product-material { font-size: 0.7rem; }
+
+      /* PROCESS */
+      .process-steps {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin-top: 3rem;
+      }
+      .process-step::after { display: none; }
+      .step-num { font-size: 3rem; margin-bottom: 0.6rem; }
+
+      /* GALLERY */
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item:first-child {
+        grid-row: auto;
+        grid-column: 1 / 3;
+      }
+      .g1 { min-height: 240px !important; }
+      .gallery-bg { min-height: 160px; }
+
+      /* TESTIMONIAL */
+      .testimonial-section { padding: 5rem 1.5rem; }
+      .testimonial-quote { font-size: 1.3rem; }
+
+      /* CONTACT */
+      .contact-section {
+        grid-template-columns: 1fr;
+      }
+      .contact-left { padding: 5rem 1.5rem 3.5rem; }
+      .contact-right { padding: 3.5rem 1.5rem 5rem; }
+
+      /* FOOTER */
+      footer {
+        flex-direction: column;
+        gap: 1.2rem;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+      .footer-social { justify-content: center; }
+    }
+
+    /* Small mobile: ≤420px */
+    @media (max-width: 420px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.6rem; }
+      .hero-right { height: 90vw; }
+      .hero-product-card { width: 155px; }
+      .section-title { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">El-Mer <span>Yün</span></a>
+    <ul class="nav-links">
+      <li><a href="#urunler">Ürünler</a></li>
+      <li><a href="#hakkinda">Hakkında</a></li>
+      <li><a href="#atölye">Atölye</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+    </ul>
+    <a class="nav-cta" href="#iletisim">İletişim</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="corner-ornament" style="top: 4rem; left: 3rem; z-index:0; font-size:12rem;">Y</div>
+      <p class="hero-eyebrow">El İşi · El-Mer Yün</p>
+      <h1 class="hero-title">
+        Ellerden<br>
+        <em>Kalbe</em><br>
+        Yün
+      </h1>
+      <p class="hero-subtitle">Selvi Daşkın tarafından</p>
+      <p class="hero-description">
+        Her ilmek bir hikâye taşır. El-Mer Yün olarak, yüzyıllık Anadolu dokuma geleneğini 
+        çağdaş tasarımla buluşturuyoruz. Doğal yünden el yapımı, ruhunuzu ısıtan parçalar.
+      </p>
+      <div class="hero-buttons">
+        <a href="#urunler" class="btn-primary">Koleksiyonu Keşfet</a>
+        <a href="#hakkinda" class="btn-ghost">Hikâyemiz</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-image-bg"></div>
+      <div class="wool-decoration wd-1"></div>
+      <div class="wool-decoration wd-2"></div>
+      <div class="wool-decoration wd-3"></div>
+
+      <div class="hero-product-card">
+        <div class="product-card-img">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="38" stroke="white" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle cx="50" cy="50" r="25" stroke="white" stroke-width="2"/>
+            <circle cx="50" cy="50" r="12" fill="rgba(255,255,255,0.3)"/>
+            <path d="M50 12 Q70 30 88 50 Q70 70 50 88 Q30 70 12 50 Q30 30 50 12Z" stroke="white" stroke-width="1" fill="none" stroke-dasharray="3 4"/>
+          </svg>
+        </div>
+        <p class="product-card-tag">Yeni · Kış 2025</p>
+        <p class="product-card-name">Merinos Atki</p>
+        <p class="product-card-price">El yapımı · Doğal yün</p>
+      </div>
+
+      <div class="hero-badge">
+        <span>El</span>
+        <span>Yapımı</span>
+        <span>✦</span>
+        <span>Doğal</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-inner" aria-hidden="true">
+      <span>El Yapımı</span><span>✦</span>
+      <span>Doğal Yün</span><span>✦</span>
+      <span>Anadolu Geleneği</span><span>✦</span>
+      <span>Merinos</span><span>✦</span>
+      <span>Angora</span><span>✦</span>
+      <span>Kasmir</span><span>✦</span>
+      <span>El İşi Örgü</span><span>✦</span>
+      <span>Özel Sipariş</span><span>✦</span>
+      <span>El Yapımı</span><span>✦</span>
+      <span>Doğal Yün</span><span>✦</span>
+      <span>Anadolu Geleneği</span><span>✦</span>
+      <span>Merinos</span><span>✦</span>
+      <span>Angora</span><span>✦</span>
+      <span>Kasmir</span><span>✦</span>
+      <span>El İşi Örgü</span><span>✦</span>
+      <span>Özel Sipariş</span><span>✦</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="hakkinda" class="section">
+    <div class="about">
+      <div class="about-visual">
+        <div class="about-main-img">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0.2;">
+            <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="100" r="80" stroke="#c4693b" stroke-width="2"/>
+              <circle cx="100" cy="100" r="55" stroke="#c4693b" stroke-width="1.5" stroke-dasharray="6 4"/>
+              <circle cx="100" cy="100" r="30" stroke="#c4693b" stroke-width="1"/>
+              <path d="M100 20 Q140 60 180 100 Q140 140 100 180 Q60 140 20 100 Q60 60 100 20Z" stroke="#c4693b" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
+        </div>
+        <div class="about-accent-img">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.4">
+            <path d="M40 5 L75 25 L75 55 L40 75 L5 55 L5 25 Z" stroke="white" stroke-width="1.5" fill="none"/>
+            <circle cx="40" cy="40" r="15" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <p class="section-label">Hakkımızda</p>
+        <h2 class="section-title">Her ilmekte bir<br><em>aşk</em> var</h2>
+        <p class="section-text">
+          El-Mer Yün, Selvi Daşkın'ın yıllarca süren bir tutkudan doğdu. Büyükannesinden 
+          öğrendiği geleneksel Anadolu örgü tekniklerini modern estetikle harmanlayan Selvi, 
+          her tasarımda hem köklere hem de günümüze sadık kalıyor.
+        </p>
+        <p class="section-text">
+          Kullandığımız her yün, özenle seçilmiş doğal kaynaklardan gelir. Merinos'un 
+          yumuşaklığından angoranın hafifliğine, her materyal kendi özgün karakterini taşır.
+        </p>
+
+        <div class="stats-row">
+          <div>
+            <div class="stat-num">8+</div>
+            <div class="stat-label">Yıllık Deneyim</div>
+          </div>
+          <div>
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Mutlu Müşteri</div>
+          </div>
+          <div>
+            <div class="stat-num">%100</div>
+            <div class="stat-label">El Yapımı</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="urunler" class="section products">
+    <div class="products-header">
+      <div>
+        <p class="section-label">Koleksiyon</p>
+        <h2 class="section-title">Seçili <em>Parçalar</em></h2>
+      </div>
+      <a href="#" class="btn-ghost">Tümünü Gör</a>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-img-bg p1"></div>
+          <div class="product-wool-icon">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="24" stroke="white" stroke-width="1.5"/><circle cx="30" cy="30" r="14" stroke="white" stroke-width="1" stroke-dasharray="3 3"/><circle cx="30" cy="30" r="6" fill="rgba(255,255,255,0.4)"/></svg>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Atki</p>
+          <p class="product-name">Merinos Sıcaklık</p>
+          <p class="product-material">%100 Merinos Yün · El Örgüsü</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">₺850 <span>TL</span></div>
+          <a class="btn-whatsapp" href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Merinos%20S%C4%B1cakl%C4%B1k%20atki%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Sipariş Ver
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-img-bg p2"></div>
+          <div class="product-wool-icon">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="12" y="12" width="36" height="36" stroke="white" stroke-width="1.5" rx="2"/><rect x="20" y="20" width="20" height="20" stroke="white" stroke-width="1" stroke-dasharray="3 2"/></svg>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Bere</p>
+          <p class="product-name">Adaçayı Rengi Bere</p>
+          <p class="product-material">Angora Karışım · El Örgüsü</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">₺450 <span>TL</span></div>
+          <a class="btn-whatsapp" href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Ada%C3%A7ay%C4%B1%20Rengi%20Bere%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Sipariş Ver
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-img-bg p3"></div>
+          <div class="product-wool-icon">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><path d="M30 8 L52 22 L52 38 L30 52 L8 38 L8 22 Z" stroke="white" stroke-width="1.5" fill="none"/><circle cx="30" cy="30" r="8" stroke="white" stroke-width="1"/></svg>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Eldiven</p>
+          <p class="product-name">Pembe Bulut</p>
+          <p class="product-material">Kasmir Yün · Özel Sipariş</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">₺650 <span>TL</span></div>
+          <a class="btn-whatsapp" href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Pembe%20Bulut%20eldiven%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Sipariş Ver
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-img-bg p4"></div>
+          <div class="product-wool-icon">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="20" stroke="white" stroke-width="1.5" stroke-dasharray="5 3"/><path d="M10 30 Q20 15 30 30 Q40 45 50 30" stroke="white" stroke-width="1.5" fill="none"/></svg>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Şal</p>
+          <p class="product-name">Altın Hasır</p>
+          <p class="product-material">Yün & İpek Karışım</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">₺1.200 <span>TL</span></div>
+          <a class="btn-whatsapp" href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Alt%C4%B1n%20Has%C4%B1r%20%C5%9Fal%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Sipariş Ver
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-img-bg p5"></div>
+          <div class="product-wool-icon">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="10" y="24" width="40" height="22" rx="4" stroke="white" stroke-width="1.5"/><path d="M20 24 L20 18 Q20 10 30 10 Q40 10 40 18 L40 24" stroke="white" stroke-width="1.5" fill="none"/></svg>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Çanta</p>
+          <p class="product-name">Örgü Sepet Çanta</p>
+          <p class="product-material">Doğal Jüt & Yün · El İşi</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">₺980 <span>TL</span></div>
+          <a class="btn-whatsapp" href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20%C3%96rg%C3%BC%20Sepet%20%C3%87anta%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Sipariş Ver
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-img-bg p6"></div>
+          <div class="product-wool-icon">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="22" stroke="white" stroke-width="1.5"/><path d="M30 8 L30 52 M8 30 L52 30" stroke="white" stroke-width="1" opacity="0.5"/><circle cx="30" cy="30" r="8" fill="rgba(255,255,255,0.2)"/></svg>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Ev Tekstili</p>
+          <p class="product-name">Okyanus Yastık</p>
+          <p class="product-material">Merinos Yün · Dekoratif</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">₺750 <span>TL</span></div>
+          <a class="btn-whatsapp" href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Okyanus%20Yast%C4%B1k%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Sipariş Ver
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="atölye" class="section process-section">
+    <p class="section-label">Atölye</p>
+    <h2 class="section-title">Nasıl <em>Yapıyoruz?</em></h2>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Yün Seçimi</h3>
+        <p class="step-text">Türkiye'nin en kaliteli çiftliklerinden gelen doğal, kimyasal işlem görmemiş yünleri titizlikle seçiyoruz.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Boyama</h3>
+        <p class="step-text">Bitkisel boyalar ve geleneksel yöntemlerle her rengi özenle hazırlıyoruz. Hiçbir iki renk tam olarak aynı değil.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">El Örgüsü</h3>
+        <p class="step-text">Yüzyıllık örgü tekniklerini kullanarak her ilmeği el ile örüyoruz. Sabır ve sevgiyle şekillenen parçalar.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Son Dokunuş</h3>
+        <p class="step-text">Her parça kalite kontrolünden geçerek özel ambalajıyla sizinle buluşmaya hazır hale geliyor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="galeri" class="section" style="background: var(--warm-white);">
+    <p class="section-label">Galeri</p>
+    <h2 class="section-title">Atölye'den <em>Kareler</em></h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-bg g1">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style="opacity:0.2">
+            <circle cx="60" cy="60" r="50" stroke="white" stroke-width="2"/>
+            <circle cx="60" cy="60" r="35" stroke="white" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <circle cx="60" cy="60" r="18" stroke="white" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="gallery-overlay">
+          <span class="gallery-overlay-text">El Örgüsü Atki</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-bg g2">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.2"><path d="M40 5 L75 25 L75 55 L40 75 L5 55 L5 25 Z" stroke="white" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Örgü Bere</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-bg g3">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.2"><rect x="10" y="10" width="60" height="60" stroke="white" stroke-width="2" rx="4"/><rect x="22" y="22" width="36" height="36" stroke="white" stroke-width="1.5" stroke-dasharray="4 3" rx="2"/></svg>
+        </div>
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Yün Detayı</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-bg g4">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.2"><circle cx="40" cy="40" r="30" stroke="white" stroke-width="2"/><path d="M10 40 Q25 20 40 40 Q55 60 70 40" stroke="white" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Şal Koleksiyonu</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-bg g5">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.2"><circle cx="40" cy="40" r="25" stroke="white" stroke-width="2" stroke-dasharray="5 4"/><circle cx="40" cy="40" r="10" fill="rgba(255,255,255,0.3)"/></svg>
+        </div>
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Atölye Anları</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial-section">
+    <span class="quote-mark">"</span>
+    <p class="testimonial-quote">
+      Aldığım her parçanın içinde bir emek, bir his var. El-Mer Yün sadece bir ürün değil, 
+      bir sıcaklık hediye ediyor.
+    </p>
+    <p class="testimonial-author">— Ayşe K., İstanbul</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="iletisim" class="contact-section">
+    <div class="contact-left">
+      <p class="section-label">İletişim</p>
+      <h2 class="section-title">Birlikte<br><em>Tasarlayalım</em></h2>
+      <p class="section-text">
+        Özel sipariş, toptan sorgu veya sadece merhaba demek için 
+        bize ulaşın. Her mesaja geri dönüyoruz.
+      </p>
+
+      <div style="margin-top: 2rem;">
+        <div class="contact-info-item">
+          <div class="contact-icon">@</div>
+          <div>
+            <p class="contact-info-label">Instagram</p>
+            <p class="contact-info-text">@el_mer_yun</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">✉</div>
+          <div>
+            <p class="contact-info-label">E-posta</p>
+            <p class="contact-info-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7c4d2dbc1def7d2dbdad2c59acec2d999d4d8da">[email&#160;protected]</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">◎</div>
+          <div>
+            <p class="contact-info-label">Konum</p>
+            <p class="contact-info-text">İstanbul, Türkiye</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <p class="section-label">Mesaj Gönderin</p>
+      <h3 class="section-title" style="font-size:2rem; margin-bottom: 2rem;">Merhaba <em>Selvi</em></h3>
+
+      <div class="form-group">
+        <label class="form-label">Adınız</label>
+        <input class="form-input" type="text" placeholder="Adınız Soyadınız" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">E-posta</label>
+        <input class="form-input" type="email" placeholder="email@ornek.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mesajınız</label>
+        <textarea class="form-input form-textarea" placeholder="Özel sipariş veya merakınız..."></textarea>
+      </div>
+      <button class="btn-primary" style="margin-top: 0.5rem; width: 100%;">Gönder</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">El-Mer <span>Yün</span></div>
+    <p class="footer-copy">© 2025 El-Mer Yün · Selvi Daşkın · Tüm hakları saklıdır</p>
+    <div clas
